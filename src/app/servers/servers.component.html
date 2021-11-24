@@ -1,0 +1,32 @@
+<label>Server Name</label>
+<!-- <input type="text" class="form-control" (input)="onUpdateServerName($event)"> -->
+<!-- two way data binding with ngModel which comes under formsModule -->
+<input type="text" class="form-control" [(ngModel)]="serverName" >
+<!-- <p>{{serverName}}</p> -->
+<button class="btn btn-primary" [disabled]="!allowNewServer"
+(click)="onCreateServer()">Add Server</button>
+<!-- <p>{{allowNewServer}}</p> -->
+<p *ngIf="serverCreated; else noServer">server name is {{ serverCreationStatus }}</p>
+<!-- * is the notation for structural directive as it can change the structure of our DOM -->
+<ng-template #noServer><p>No server was created</p></ng-template>
+<!-- <app-server></app-server> 
+<app-server></app-server> -->
+
+<app-server *ngFor="let server of servers"></app-server>
+
+<hr>
+<div class="container">
+    <input type='text' [(ngModel)]="userName"/>
+    <button class="btn btn-secondary" (click)="userName=''" 
+    [disabled]="userName ===''">Add user</button>
+    <p>{{userName}}</p>
+</div>
+<hr>
+<div class='container'>
+    <button class="btn btn-primary" (click)="onToggleDetails()">Display details</button>
+    <p *ngIf="showSecret">A part of my student life has ended one month ago as I have joined Halodoc</p>
+    <div *ngFor="let logItem of log;let i= index" [ngStyle]="{backgroundColor: 'cyan'}">
+        {{logItem}}
+    </div>
+</div>
+
